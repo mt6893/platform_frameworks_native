@@ -2052,6 +2052,10 @@ void EventHub::openDeviceLocked(const std::string& devicePath) {
         }
     }
 
+    if (!strcmp(device->identifier.name.c_str(), "xm_gamekey")) {
+        device->classes |= InputDeviceClass::SWITCH;
+    }
+
     // Check whether this device supports the vibrator.
     if (device->ffBitmask.test(FF_RUMBLE)) {
         device->classes |= InputDeviceClass::VIBRATOR;
